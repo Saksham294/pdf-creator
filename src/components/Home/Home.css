@@ -1,0 +1,265 @@
+.home-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #373737;
+    /* border: 2px solid red; */
+}
+.home-header{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pdf-icon{
+    color: tomato;
+    height: 4vw;
+    width: 4vw;
+}
+.home-header>h3 {
+    font-family: "Poppins";
+    padding: 2vh 0 0 0;
+    color: rgb(255, 255, 255);
+}
+
+.pdf-input {
+    width: 100%;
+    display: flex;
+    padding: 0 0 2vh 0;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid red; */
+}
+
+.pdf-input-text {
+    border: 1px solid #484848;
+    outline: none;
+    font-family: "Poppins";
+    border-radius: 8px;
+    font-size: 2vh;
+    width: 40%;
+    padding: 2vh 10vh 2vh 2vh;
+    resize: none;
+    overflow: auto;
+    max-height: 200px;
+    background-color: #484848;
+    color: white;
+    transition: max-height 0.3s ease;
+}
+
+.pdf-button {
+    position: absolute;
+    right: 28%;
+    bottom: 4%;
+    padding: 0.6vh 1vh;
+    border: none;
+    font-family: "Poppins";
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* border: 2px solid red; */
+    /* Adjust this value to your desired button height */
+}
+
+.pdf-button:hover {
+    background-color: #94949488;
+    color: #373737;
+}
+
+.pdf-button:active {
+    background-color: #6b6b6bc5;
+}
+
+.pdf-button-disabled {
+    position: absolute;
+    right: 18%;
+    bottom: 4%;
+    padding: 0.6vh 1vh;
+    border: none;
+    font-family: "Poppins";
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    cursor: not-allowed;
+    background-color: #94949477;
+    color: black;
+}
+
+@media screen and (max-width: 320px) {
+    .home-header>h3 {
+        font-size: 10vw;
+    }
+
+    .pdf-input-text {
+        width: 60%;
+    }
+
+    .pdf-button {
+        right: 13%;
+    }
+
+    .stopIcon {
+        font-size: 1rem;
+    }
+
+    .goIcon {
+        /* border: 2px solid red; */
+    }
+}
+
+@media screen and (max-width:375px) {
+    .home-header>h3 {
+        font-size: 10vw;
+    }
+
+    .pdf-input-text {
+        width: 60%;
+    }
+
+    .pdf-button {
+        right: 13%;
+    }
+
+    .stopIcon {
+        font-size: 1rem;
+    }
+
+    .goIcon {
+        /* border: 2px solid red; */
+    }
+}
+
+@media screen and (min-width: 376px) and (max-width: 425px) {
+    .home-header>h3 {
+        font-size: 10vw;
+    }
+
+    .pdf-input-text {
+        width: 60%;
+    }
+
+    .pdf-button {
+        right: 13%;
+    }
+    .pdf-button-disabled{
+        right: 13%;
+    }
+
+    .stopIcon {
+        font-size: 1rem;
+    }
+
+    .goIcon {
+        /* border: 2px solid red; */
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .home-header>h3 {
+        font-size: 5vw;
+    }
+    .pdf-icon{
+        height: 4vw;
+        width: 4vw;
+        margin-top: 2vw;
+    }
+    .pdf-input-text {
+        width: 60%;
+    }
+
+    .pdf-button {
+        right: 16%;
+    }
+    .pdf-button-disabled{
+        right: 15%;
+    }
+
+    .stopIcon {
+        font-size: 1rem;
+    }
+
+    .goIcon {
+        /* border: 2px solid red; */
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .home-header>h3 {
+        font-size: 5vw;
+    }
+
+    .pdf-icon{
+        height: 4vw;
+        width: 4vw;
+        margin-top: 1vw;
+    }
+    .pdf-input-text {
+        width: 60%;
+    }
+
+    .pdf-button {
+        right: 18%;
+    }
+
+    .pdf-button-disabled {
+        right: 18%;
+    }
+
+    .stopIcon {
+        font-size: 1rem;
+    }
+
+    .goIcon {
+        /* border: 2px solid red; */
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .home-header>h3 {
+        font-size: 5vw;
+    }
+
+    .pdf-input-text {
+        width: 60%;
+    }
+
+    .pdf-button {
+        right: 18%;
+    }
+    .pdf-button-disabled {
+        right: 18%;
+    }
+    .stopIcon {
+        font-size: 1rem;
+    }
+
+    .goIcon {
+        /* border: 2px solid red; */
+    }
+}
+
+@media screen and (min-width: 1441px) {
+    .home-header>h3 {
+        font-size: 5vw;
+    }
+
+    .pdf-input-text {
+        width: 60%;
+    }
+
+    .pdf-button {
+        right: 18%;
+    }
+    .pdf-button-disabled {
+        right: 18%;
+    }
+    .stopIcon {
+        font-size: 1rem;
+    }
+
+    .goIcon {
+        /* border: 2px solid red; */
+    }
+}

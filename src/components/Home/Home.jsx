@@ -23,10 +23,11 @@ const Home = () => {
             setInputText('')
         }
     }
+    console.log(process.env.REACT_APP_URL)
     const sendRequest = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:4000/api/generate', {
+            const response = await fetch(`${process.env.REACT_APP_URL}/api/generate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

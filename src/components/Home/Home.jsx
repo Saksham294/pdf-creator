@@ -1,24 +1,58 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './Home.css'
-import jsPDF from 'jspdf'
 import { Typography } from '@mui/material'
-import StopIcon from '@mui/icons-material/Stop';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { FaFilePdf } from "react-icons/fa";
-
-// const openai=new OpenAI({
-//     apiKey:process.env.REACT_APP_OPENAI_API_KEY,
-//     // dangerouslyAllowBrowser: true
-// })
 
 const Home = () => {
 
     const textAreaRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false)
-    const [isEmpty, setIsEmpty] = useState(false)
+    const [inputText, setInputText] = useState('')
+    const [numberOfPages, setNumberOfPages] = useState(0)
+    const [isEmpty, setIsEmpty] = useState(true)
+    const [messageIndex, setMessageIndex] = useState(0);
+    const [error, setError] = useState(null)
+    const messages = [
+        'Please wait...',
+        'We are creating your PDF...',
+        'Your PDF will automatically get downloaded.',
+    ];
     const handleButtonClick = () => {
-        setIsLoading(!isLoading)
+        if (!isEmpty) {
+            sendRequest();
+            setInputText('')
+        }
     }
+    const sendRequest = async () => {
+        setIsLoading(true);
+        try {
+            const response = await fetch('http://localhost:4000/api/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ pages: numberOfPages, text: inputText }),
+            });
+            if (!response.ok) {
+                console.log(response)
+                throw new Error(`HTTP error! status: ${response.status} ${response.statusText}`)
+            }
+            console.log(response)
+            const blob = await response.blob();
+            const pdfURL = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = pdfURL;
+            link.setAttribute('download', 'output.pdf'); // Name of the output PDF
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+        } catch (error) {
+            setError(error.message);
+            console.error('Error fetching the PDF:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
     useEffect(() => {
         const textArea = textAreaRef.current;
         if (textArea) {
@@ -35,31 +69,69 @@ const Home = () => {
             };
         }
     }, []);
+    useEffect(() => {
+        if (isLoading) {
+            const messageTimers = [
+                setTimeout(() => setMessageIndex(1), 2000), // 2 seconds delay
+                setTimeout(() => setMessageIndex(2), 4000), // 4 seconds delay
+                setTimeout(() => setMessageIndex(0), 6000), // 6 seconds delay
+            ];
+
+            // Cleanup timers when loading is finished or component is unmounted
+            return () => {
+                messageTimers.forEach(timer => clearTimeout(timer));
+            };
+        }
+    }, [isLoading]);
     return (
         <div className='home-container'>
             <div className="home-header">
-                <FaFilePdf className='pdf-icon' />
-                <Typography variant='h3'>PDF Creator</Typography>
+                <div className="heading">
+                    <FaFilePdf className='pdf-icon' />
+                    <Typography variant='h3'>PDF Creator</Typography>
+                </div>
+                <div className="sub-heading">
+                    <Typography variant='h6'>Create your PDFs in minutes</Typography>
+                </div>
             </div>
             <div className="pdf-input">
+                <label htmlFor="pdf-input-number" className="pdf-label">Number of pages</label>
+                <input
+                    type="text"
+                    placeholder="Number of pages"
+                    value={numberOfPages}
+                    onChange={(e) => {
+                        setNumberOfPages(Number(e.target.value))
+                    }}
+                    className="pdf-input-number"
+                />
+                <label htmlFor="pdf-input-text" className="pdf-label">Describe your PDF</label>
                 <textarea
                     ref={textAreaRef}
                     type="text"
-                    placeholder="
-                    Enter details about the PDF you want to create...
-                    "
+                    placeholder="Enter details about the PDF you want to create. Describe how each page should look like. The more details you provide the better the PDF will be."
+                    value={inputText}
+                    onChange={(e) => {
+                        setInputText(e.target.value)
+                        setIsEmpty(e.target.value === '')
+                    }}
+
                     className="pdf-input-text"
                 />
                 <button
-                    className={`pdf-button${isLoading ? '-disabled' : ''}`}
+                    className={`pdf-button${isLoading || isEmpty || numberOfPages < 1 ? '-disabled' : ''}`}
                     onClick={handleButtonClick}
-                    disabled={isLoading || isEmpty}
+                    disabled={isLoading || isEmpty || numberOfPages < 1}
                 >
                     {isLoading ?
-                        <StopIcon className='stopIcon' sx={{ paddingTop: "0.5vh" }} /> :
-                        <ArrowForwardIcon className='goIcon' sx={{ paddingTop: "0.5vh" }} />}
+                        <Typography variant='h6'>Creating PDF...</Typography>
+                        : <Typography variant='h6'>Create PDF</Typography>
+                    }
                 </button>
+
             </div>
+            {isLoading ? <Typography variant='h6'>{messages[messageIndex]}</Typography> : null}
+            {error ? <Typography variant='h5'>{error}</Typography> : null}
         </div>
     )
 }

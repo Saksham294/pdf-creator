@@ -1,36 +1,88 @@
+.home-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 2vh 5vw;
+    background-color: #373737;
+    /* border: 2px solid red; */
+}
+
 .home-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: #373737;
     /* border: 2px solid red; */
 }
-.home-header{
+
+.home-container>h6 {
+    font-family: "Poppins";
+    font-weight: 300;
+    color: rgb(193, 193, 193);
+    font-size: 1.2vw;
+}
+
+.home-container>h5{
+    font-family: "Poppins";
+    font-weight: 300;
+    color: rgb(255, 59, 59);
+    font-size: 1.2vw;
+}
+
+.heading {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.pdf-icon{
+.sub-heading>h6 {
+    font-family: "Roboto";
+    font-weight: 300;
+    color: rgb(193, 193, 193);
+    font-size: 1.2vw;
+}
+
+.pdf-icon {
     color: tomato;
     height: 4vw;
     width: 4vw;
 }
-.home-header>h3 {
+
+.pdf-input-number {
+    background-color: #484848;
+    border: none;
+    color: white;
+    outline: none;
     font-family: "Poppins";
-    padding: 2vh 0 0 0;
-    color: rgb(255, 255, 255);
+    width: 20%;
+    padding: 2vh 2vh;
+    border-radius: 8px;
 }
 
 .pdf-input {
-    width: 100%;
     display: flex;
-    padding: 0 0 2vh 0;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
     /* border: 2px solid red; */
+    width: 60%;
+    gap: 10px;
+}
+
+.pdf-label {
+    font-family: "Poppins";
+    color: white;
+    font-size: 2vh;
+}
+
+.heading>h3 {
+    font-family: "Poppins";
+    padding: 2vh 0 0 0;
+    color: rgb(255, 255, 255);
 }
 
 .pdf-input-text {
@@ -39,10 +91,11 @@
     font-family: "Poppins";
     border-radius: 8px;
     font-size: 2vh;
-    width: 40%;
+    width: 100%;
     padding: 2vh 10vh 2vh 2vh;
     resize: none;
     overflow: auto;
+    min-height: 100px;
     max-height: 200px;
     background-color: #484848;
     color: white;
@@ -50,22 +103,23 @@
 }
 
 .pdf-button {
-    position: absolute;
-    right: 28%;
-    bottom: 4%;
-    padding: 0.6vh 1vh;
+    padding: 1vh 2vh;
     border: none;
     font-family: "Poppins";
-    border-radius: 50%;
     cursor: pointer;
+    background-color: tomato;
     transition: background-color 0.3s;
+    border-radius: 4px;
+    color: white;
     /* border: 2px solid red; */
-    /* Adjust this value to your desired button height */
+}
+
+.pdf-button>h6 {
+    font-size: 2.5vh;
 }
 
 .pdf-button:hover {
-    background-color: #94949488;
-    color: #373737;
+    background-color: #39ace7;
 }
 
 .pdf-button:active {
@@ -73,22 +127,22 @@
 }
 
 .pdf-button-disabled {
-    position: absolute;
-    right: 18%;
-    bottom: 4%;
-    padding: 0.6vh 1vh;
+    padding: 1vh 2vh;
     border: none;
     font-family: "Poppins";
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
     cursor: not-allowed;
-    background-color: #94949477;
-    color: black;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+
+}
+
+.pdf-button-disabled>h6 {
+    font-size: 2.5vh;
+    color: #373737;
 }
 
 @media screen and (max-width: 320px) {
-    .home-header>h3 {
+    .heading>h3 {
         font-size: 10vw;
     }
 
@@ -110,7 +164,7 @@
 }
 
 @media screen and (max-width:375px) {
-    .home-header>h3 {
+    .heading>h3 {
         font-size: 10vw;
     }
 
@@ -132,134 +186,69 @@
 }
 
 @media screen and (min-width: 376px) and (max-width: 425px) {
-    .home-header>h3 {
+    .heading>h3 {
         font-size: 10vw;
     }
 
     .pdf-input-text {
         width: 60%;
     }
-
-    .pdf-button {
-        right: 13%;
-    }
-    .pdf-button-disabled{
-        right: 13%;
-    }
-
-    .stopIcon {
-        font-size: 1rem;
-    }
-
-    .goIcon {
-        /* border: 2px solid red; */
-    }
 }
 
 @media screen and (min-width: 426px) and (max-width: 768px) {
-    .home-header>h3 {
-        font-size: 5vw;
+    .heading>h3 {
+        font-size: 8vw;
     }
-    .pdf-icon{
-        height: 4vw;
-        width: 4vw;
+
+    .sub-heading>h6 {
+        font-size: 3vw;
+    }
+
+    .pdf-icon {
+        height: 10vw;
+        width: 10vw;
         margin-top: 2vw;
     }
+
     .pdf-input-text {
-        width: 60%;
-    }
-
-    .pdf-button {
-        right: 16%;
-    }
-    .pdf-button-disabled{
-        right: 15%;
-    }
-
-    .stopIcon {
-        font-size: 1rem;
-    }
-
-    .goIcon {
-        /* border: 2px solid red; */
+        width: 90%;
     }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-    .home-header>h3 {
-        font-size: 5vw;
+    .heading>h3 {
+        font-size: 6vw;
     }
 
-    .pdf-icon{
+    .pdf-icon {
         height: 4vw;
         width: 4vw;
         margin-top: 1vw;
     }
+
     .pdf-input-text {
-        width: 60%;
-    }
-
-    .pdf-button {
-        right: 18%;
-    }
-
-    .pdf-button-disabled {
-        right: 18%;
-    }
-
-    .stopIcon {
-        font-size: 1rem;
-    }
-
-    .goIcon {
-        /* border: 2px solid red; */
+        width: 100%;
     }
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1440px) {
-    .home-header>h3 {
+    .heading>h3 {
         font-size: 5vw;
     }
 
     .pdf-input-text {
-        width: 60%;
+        width: 100%;
     }
 
-    .pdf-button {
-        right: 18%;
-    }
-    .pdf-button-disabled {
-        right: 18%;
-    }
-    .stopIcon {
-        font-size: 1rem;
-    }
 
-    .goIcon {
-        /* border: 2px solid red; */
-    }
 }
 
 @media screen and (min-width: 1441px) {
-    .home-header>h3 {
+    .heading>h3 {
         font-size: 5vw;
     }
 
     .pdf-input-text {
         width: 60%;
-    }
-
-    .pdf-button {
-        right: 18%;
-    }
-    .pdf-button-disabled {
-        right: 18%;
-    }
-    .stopIcon {
-        font-size: 1rem;
-    }
-
-    .goIcon {
-        /* border: 2px solid red; */
     }
 }

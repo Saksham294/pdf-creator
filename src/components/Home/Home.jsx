@@ -23,7 +23,7 @@ const Home = () => {
             setInputText('')
         }
     }
-    console.log(process.env.REACT_APP_URL)
+    // console.log(process.env.REACT_APP_URL)
     const sendRequest = async () => {
         setIsLoading(true);
         try {
